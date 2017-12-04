@@ -1,0 +1,12 @@
+---
+- name: UPGRADE ALL PACKAGES
+  yum:
+    name: '*'
+    state: latest
+
+- block:
+  - name: INSTALL TOOLS
+    yum: state=latest name={{ item }}
+    with_items:
+      - "{{ Tools }}"
+    become: true
